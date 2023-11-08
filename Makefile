@@ -4,8 +4,8 @@
 #-----------------------
 
 CC = gcc -ansi -pedantic
-CFLAGS = -Wall
-EXE = exercise1 exercise2 exercise3 exercise4 exercise5
+CFLAGS = -Wall -g
+EXE = exercise4 exercise5
 
 all : $(EXE)
 
@@ -56,6 +56,10 @@ exercise3_test:
 exercise4_test:
 	@echo Running exercise4
 	@./exercise4 -size 10
+
+v_exercise4_test:
+	@echo Running valgrind exercise5
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./exercise4 -size 10
 
 exercise5_test:
 	@echo Running exercise5

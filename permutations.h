@@ -1,12 +1,9 @@
 /**
- *
- * Descripcion: Header for functions for permutations generation
- *
+ * Descripcion: Implementation of time measurement functions
  * Fichero: permutations.h
- * Autor: Carlos Aguirre 
- * Version: 1.1
- * Fecha: 16-09-2019
- *
+ * Autor: Miguel Paterson & María Silva 
+ * Version: 1.0
+ * Fecha: 25-20-2023
  */
 
 #ifndef PERMUTATIONS_H

@@ -1,12 +1,9 @@
 /**
- *
- * Descripcion: Header file for time measurement functions 
- *
+ * Descripcion: Implementation of time measurement functions
  * Fichero: times.h
- * Autor: Carlos Aguirre.
- * Version: 1.1
- * Fecha: 15-09-2019
- *
+ * Autor: Miguel Paterson & María Silva 
+ * Version: 1.0
+ * Fecha: 25-20-2023
  */
 
 #ifndef TIMES_H

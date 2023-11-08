@@ -1,12 +1,9 @@
 /**
- *
- * Descripcion: Implementation of function that generate permutations
- *
- * File: permutations.c
- * Autor: Carlos Aguirre
- * Version: 1.1
- * Fecha: 21-09-2019
- *
+ * Descripcion: Implementation of time measurement functions
+ * Fichero: permutations.c
+ * Autor: Miguel Paterson & María Silva 
+ * Version: 1.0
+ * Fecha: 25-20-2023
  */
 
 

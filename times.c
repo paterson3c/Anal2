@@ -1,12 +1,9 @@
 /**
- *
  * Descripcion: Implementation of time measurement functions
- *
  * Fichero: times.c
- * Autor: Carlos Aguirre Maeso
+ * Autor: Miguel Paterson & María Silva 
  * Version: 1.0
- * Fecha: 16-09-2019
- *
+ * Fecha: 25-20-2023
  */
 
 #include "times.h"
