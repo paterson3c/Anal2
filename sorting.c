@@ -209,8 +209,6 @@ int partition(int* tabla, int ip, int iu,int *pos) {
 
   cont = median_stat(tabla, ip, iu, pos);
 
-  printf("%d\n", *pos);
-
   k = tabla[*pos];
   swap(&tabla[ip], &tabla[*pos]);
   *pos = ip;
