@@ -172,58 +172,57 @@ int merge(int* tabla, int ip, int iu, int imedio) {
 int quicksort(int* tabla, int ip, int iu) {
   int im, cont = 0, st = OK;
   
-  if (ip > iu) {
+  
+  if (ip == iu) 
+    return OK;
+
+  st = partition(tabla, ip, iu, &im);
+  if (st == ERR) {
     return ERR;
   }
-  else if (ip == iu) {
-    return OK;
-  }
-  else {
-    st = partition(tabla, ip, iu, &im);
+  cont += st;
+  
+  if (ip < im - 1) {
+    st = quicksort(tabla, ip, im - 1);
     if (st == ERR) {
       return ERR;
     }
     cont += st;
-    
-    if (ip < im - 1) {
-      st = quicksort(tabla, ip, im - 1);
-      if (st == ERR) {
-        return ERR;
-      }
-      cont += st;
-    }
-    if (im + 1 < iu) {
-      st = quicksort(tabla, im + 1, iu);
-      if (st == ERR) {
-        return ERR;
-      }
-      cont += st;
-    }
-    return cont;
   }
+  if (im + 1 < iu) {
+    st = quicksort(tabla, im + 1, iu);
+    if (st == ERR) {
+      return ERR;
+    }
+    cont += st;
+  }
+  return cont;
+
 }
 
 int partition(int* tabla, int ip, int iu,int *pos) {
-  int i, m, k, cont = 0;
+  int i, k, cont;
 
   if (ip > iu){
     return ERR;
   }
 
-  median (tabla, ip, iu, pos);
+  cont = median_stat(tabla, ip, iu, pos);
+
+  printf("%d\n", *pos);
+
   k = tabla[*pos];
-  m = *pos;
   swap(&tabla[ip], &tabla[*pos]);
   *pos = ip;
 
   for (i = ip + 1; i <= iu; i++) {
     if (tabla[i] < k) {
-      *pos = *pos + 1;
-      swap(&tabla[*pos],&tabla[i]);
+      (*pos)++;
+      swap(&tabla[i],&tabla[*pos]);
     }
     cont++;
   }
-  swap(&tabla[m],&tabla[*pos]);
+  swap(&tabla[ip],&tabla[*pos]);
   return cont;
 }
 
@@ -231,3 +230,27 @@ int median(int *tabla, int ip, int iu,int *pos) {
   *pos = ip;
   return OK;
 }
+
+int median_avg(int *tabla, int ip, int iu, int *pos) {
+  *pos = (ip + iu) / 2;
+  return OK;
+}
+
+int median_stat(int *tabla, int ip, int iu, int *pos) {
+    int im = (ip + iu) / 2;
+    int ob = 1;
+
+    if ((ip <= im && im <= iu) || (iu <= im && im <= ip)) {
+        *pos = im;
+        ob += 3;
+    } else if ((im <= ip && ip <= iu) || (iu <= ip && ip <= im)) {
+        *pos = ip;
+        ob += 3;
+    } else {
+        *pos = iu;
+        ob += 2;
+    }
+    
+    return ob;
+}
+
