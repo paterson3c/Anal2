@@ -101,18 +101,28 @@ int min(int *array, int ip, int iu)
 /***************************************************/
 
 int mergesort(int* tabla, int ip, int iu) {
-  int m = 0, cont = 0;
+  int m, cont = 0, st;
 
-  if (ip > iu)
-    return ERR;
-  else if (ip == iu)
+  if (ip == iu) {
     return cont;
-  else {
-    m = (iu + ip) / 2;
-    cont += mergesort(tabla, ip, m);
-    cont += mergesort(tabla, m+1, iu);
-    return cont + merge(tabla, ip, iu, m);
   }
+
+  m = (iu + ip) / 2;
+
+  st = mergesort(tabla, ip, m);
+  if (st == ERR)
+    return ERR;
+  cont += st;
+  st = mergesort(tabla, m+1, iu);
+  if (st == ERR)
+    return ERR;
+  cont += st;
+
+  st = merge(tabla, ip, iu, m);
+  if (st == ERR)
+    return ERR;
+
+  return cont + st;
 }
 
 
@@ -120,6 +130,8 @@ int merge(int* tabla, int ip, int iu, int imedio) {
   int cont = 0, i, j, k, l;
   int *tabla2;
   tabla2 = (int*) malloc((iu - ip + 1) * sizeof(int));
+  if (!tabla2)
+    return ERR;
 
   tabla += ip;
   for (l = 0; l < iu - ip + 1; l++)
@@ -172,7 +184,6 @@ int merge(int* tabla, int ip, int iu, int imedio) {
 int quicksort(int* tabla, int ip, int iu) {
   int im, cont = 0, st = OK;
   
-  
   if (ip == iu) 
     return OK;
 
@@ -208,6 +219,9 @@ int partition(int* tabla, int ip, int iu,int *pos) {
   }
 
   cont = median_stat(tabla, ip, iu, pos);
+  if (cont == ERR) {
+    return ERR;
+  }
 
   k = tabla[*pos];
   swap(&tabla[ip], &tabla[*pos]);
